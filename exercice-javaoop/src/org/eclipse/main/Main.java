@@ -31,7 +31,7 @@ public class Main {
 		for(Etudiant e : etus) {
 			if(e.getFiliere().getCode() == "TS") {
 				TS += e + "\n";
-			}else {
+			} else {
 				TL += e + "\n";
 			}
 		}
