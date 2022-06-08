@@ -1,7 +1,7 @@
 package org.eclipse.main;
 
 import org.eclipse.classes.Salle;
-import org.eclipse.classes.SalleService;
+import org.eclipse.services.SalleService;
 
 public class Main {
 

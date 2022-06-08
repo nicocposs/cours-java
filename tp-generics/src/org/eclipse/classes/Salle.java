@@ -15,6 +15,12 @@ public class Salle {
 		this.code = code;
 		this.libelle = libelle;
 	}
+	
+	public Salle(int id, String code, String libelle) {
+		this.id = id;
+		this.code = code;
+		this.libelle = libelle;
+	}
 
 	public String getCode() {
 		return code;

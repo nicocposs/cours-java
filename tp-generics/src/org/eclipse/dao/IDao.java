@@ -1,4 +1,4 @@
-package org.eclipse.interfaces;
+package org.eclipse.dao;
 
 import java.util.List;
 
