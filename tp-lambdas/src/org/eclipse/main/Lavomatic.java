@@ -45,14 +45,13 @@ public class Lavomatic {
 //		
 //		
 //		/////// Exemple 2
-		Machine[] arrMachines = {
+		
+		List<Machine> machines = Arrays.asList(
 				new Machine(2011,"Machine A"),
 				new Machine(2015,"Machine B"),
 				new Machine(2012,"Machine C"),
 				new Machine(2018,"Machine D"),
-				new Machine(2010,"Machine E")};
-		
-		List<Machine> machines = Arrays.asList(arrMachines);
+				new Machine(2010,"Machine E"));
 		
 		for (Machine m : machines) {
 			System.out.println(m);
