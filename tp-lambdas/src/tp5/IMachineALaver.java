@@ -4,5 +4,5 @@ package tp5;
 public interface IMachineALaver {
 	String demarrer(String contenu);
 	
-	void test();
+	//void test();
 }
