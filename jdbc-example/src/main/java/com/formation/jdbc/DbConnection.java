@@ -24,7 +24,7 @@ public class DbConnection {
 	}
 
 	public Connection getConnection() throws SQLException {
-		if (conn == null) {
+		if (conn == null || conn.isClosed()) {
 			log.info("Opening connection to postgresql");
 			String url = "jdbc:postgresql://localhost/postgres";
 			String login = "postgres";
@@ -35,6 +35,7 @@ public class DbConnection {
 				log.info("connection sucessful to postgresql");
 			}
 		}
+
 		return conn;
 	}
 }
