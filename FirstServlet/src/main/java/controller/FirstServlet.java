@@ -27,8 +27,16 @@ public class FirstServlet extends HttpServlet {
 
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		
+		String nom = request.getParameter("name");
+		String pass = request.getParameter("pass");
+		
+		System.out.println("Passe dans le post post_nom="+nom+" post_pass="+pass);
+		
+		request.setAttribute("nom",nom);
+		request.setAttribute("pass", pass);
+		
+		request.getRequestDispatcher("test.jsp").forward(request, response);
 	}
 
 }
