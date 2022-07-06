@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import fr.orsys.fx.calendrier_gif.business.Theme;
 import fr.orsys.fx.calendrier_gif.business.Utilisateur;
 import fr.orsys.fx.calendrier_gif.util.NbInscrits;
 
@@ -29,4 +30,12 @@ public interface UtilisateurDao extends JpaRepository<Utilisateur,Long> {
 	 
 	 @Query(value = "SELECT new fr.orsys.fx.calendrier_gif.util.NbInscrits(year(u.dateHeureInscription), month(u.dateHeureInscription), COUNT(*) as nbutilisateurs) FROM Utilisateur u GROUP BY year(u.dateHeureInscription), month(u.dateHeureInscription)")
 	 List<NbInscrits> findNbInscrits();
+	 
+	 //écrire une méthode qui donne les utilisateurs triés sur la date et heure d'inscription et ayant le prénom donné en paramètre
+	 @Query("FROM Utilisateur WHERE prenom=?1 ORDER BY dateHeureInscription")
+	 List<Utilisateur> findUsersByNameOrderedByDate(String prenom);
+	 
+	 List<Utilisateur> findByTheme(Theme theme);
+	 
+	 Utilisateur findByEmailAndMotDePasse(String email, String motDePasse);
 }

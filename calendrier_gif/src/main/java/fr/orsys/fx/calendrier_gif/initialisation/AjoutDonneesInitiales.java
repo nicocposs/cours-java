@@ -89,6 +89,8 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
         gifDao.findNbGifs().forEach(System.out::println);
         System.out.println(jourDao.findNbPoints(7, 2022));
         System.out.println(jourDao.findAverageOfPoints(7, 2022));
+        utilisateurDao.findUsersByNameOrderedByDate("Test").forEach(System.out::println);
+        emotionDao.findFirst2EmotionByNomContaining("o").forEach(System.out::println);;
 	}
 
 	
@@ -142,7 +144,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				Utilisateur utilisateur = new Utilisateur();
 				// On fait appel au faker pour définir le nom de l'utilisateur
 				utilisateur.setNom(faker.name().lastName());
-				utilisateur.setPrenom(faker.name().firstName());
+				utilisateur.setPrenom("Test");
 				utilisateur.setEmail(fakeValuesService.letterify("?????@orsys.fr"));
 				
 				//utilisateur.setMotDePasse(fakeValuesService.letterify("?????"));

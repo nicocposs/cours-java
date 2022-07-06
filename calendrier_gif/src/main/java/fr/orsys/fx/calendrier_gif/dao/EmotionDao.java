@@ -19,4 +19,7 @@ public interface EmotionDao extends JpaRepository<Emotion, Long> {
 	// Spring Data essaie de construire une requête HQL en analysant le nom 
 	// de la méthode Java
 	Emotion findByNom(String nom);
+	
+	//exercice : dans EmotionDao, écrire la méthode qui donne les deux premières émotions dont le nom contient le nom donné en paramètre
+	List<Emotion> findFirst2EmotionByNomContaining(String nom);
 }

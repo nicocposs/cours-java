@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import fr.orsys.fx.calendrier_gif.business.Jour;
+import fr.orsys.fx.calendrier_gif.business.Utilisateur;
 import fr.orsys.fx.calendrier_gif.util.NbPoints;
 
 public interface JourDao extends JpaRepository<Jour, LocalDate> {
@@ -28,4 +29,14 @@ public interface JourDao extends JpaRepository<Jour, LocalDate> {
 	
 	@Query("SELECT avg(j.nbPoints) FROM Jour j GROUP BY year(j.date), month(j.date)")
     Integer findAverageOfPoints(@Param("annee") int annee, @Param("mois") int mois);
+	
+	List<Jour> findByGifUtilisateur(Utilisateur utilisateur);
+
+    List<Jour> findByGifIsNull();
+
+    List<Jour> findByNbPoints(int nbPoints);
+
+    List<Jour> findByGifIsNullAndNbPointsGreaterThanEqual(int min);
+
+    List<Jour> findByGifIsNullAndNbPointsGreaterThanEqualAndDateBefore(int min, LocalDate date);
 }
