@@ -1,14 +1,13 @@
 package controller;
 
 import java.io.IOException;
+import java.time.LocalDate;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-
-import services.User;
 
 /**
  * Servlet implementation class LoginServlet
@@ -38,19 +37,13 @@ public class LoginServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String login = request.getParameter("login");
-		String pwd = request.getParameter("pwd");
-		
-		if(LOGIN.equals(login) && PASSWORD.equals(pwd)) {
-			User us = new User(login,pwd);
-			HttpSession session = request.getSession();
-			session.setMaxInactiveInterval(1800);
-			session.setAttribute("user", us);
-			response.sendRedirect("loginSuccess.jsp");
-		}else {
-			response.sendRedirect("connexion.jsp");
-		}
-		
+		String nom = request.getParameter("nom");
+	    String prenom = request.getParameter("prenom");
+	    Integer salaire = Integer.parseInt(request.getParameter("salaire"));
+	    LocalDate dateDeNaissance = LocalDate.parse(request.getParameter("dateDeNaissance"));
+
+	    
+	    
 	}
 
 }

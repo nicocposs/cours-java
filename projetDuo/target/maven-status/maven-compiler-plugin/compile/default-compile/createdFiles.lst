@@ -1,0 +1,6 @@
+org\formation\hibernate\employee\TestListEmployees.class
+org\formation\hibernate\entity\Conseiller.class
+org\formation\hibernate\employee\TestAfficherEmployee.class
+org\formation\hibernate\employee\TestCréerEmployee.class
+org\formation\hibernate\employee\TestSupprimerEmployee.class
+org\formation\hibernate\employee\TestModifierEmployee.class
