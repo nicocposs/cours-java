@@ -26,6 +26,7 @@ public class Utilisateur {
 	
 	public Utilisateur() {
 		this.nbPoints = NB_POINTS_INITIAL;
+		this.dateHeureInscription = LocalDateTime.now();
 	}
 	
 	@Id

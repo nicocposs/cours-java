@@ -57,7 +57,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		ajouterJours();
 		ajouterUtilisateurs();
 		ajouterGifs();
-		ajouterReactions();
+		//ajouterReactions();
 		Date dateHeureFin = new Date();
 		System.out.println("Données initiales ajoutées en " + String.valueOf(dateHeureFin.getTime()-dateHeureDebut.getTime()) + " ms");
 		System.out.println(themeDao.findByThemeStartingWithB());
@@ -91,6 +91,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
         System.out.println(jourDao.findAverageOfPoints(7, 2022));
         utilisateurDao.findUsersByNameOrderedByDate("Test").forEach(System.out::println);
         emotionDao.findFirst2EmotionByNomContaining("o").forEach(System.out::println);;
+        reactionDao.findTop5ByGifEqualsOrderByDateHeureDesc(gifDao.findAll().get(0)).forEach(System.out::println);;
 	}
 
 	
@@ -144,7 +145,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				Utilisateur utilisateur = new Utilisateur();
 				// On fait appel au faker pour définir le nom de l'utilisateur
 				utilisateur.setNom(faker.name().lastName());
-				utilisateur.setPrenom("Test");
+				utilisateur.setPrenom(faker.name().firstName());
 				utilisateur.setEmail(fakeValuesService.letterify("?????@orsys.fr"));
 				
 				//utilisateur.setMotDePasse(fakeValuesService.letterify("?????"));
@@ -169,6 +170,13 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 				// On ajoute l'objet utilisateur dans la map
 				map.put(utilisateur.getEmail(), utilisateur);
 			}
+			Utilisateur u = new Utilisateur();
+			u.setEmail("nico@orsys.fr");
+			u.setMotDePasse("aaaa");
+			u.setNom("Grard");
+			u.setPrenom("Nicolas");
+			u.setTheme(themes.get(random.nextInt(themes.size())));
+			map.put(u.getEmail(),u);
 			// J'invoque la méthode saveAll sur la dao utilisateurDao
 			// pour demander à Spring Data de sauvegarder tous les utilisateurs présents dans la map
 			utilisateurDao.saveAll(map.values());		
@@ -202,12 +210,14 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 			gifdistant.setLegende(faker.letterify("???? : ???? - ?????"));
 			Jour j = jours.get(random.nextInt(jours.size()));
 			
+			
 			gifdistant.setJour(j);
+			jours.remove(j);
 			Utilisateur u = utilisateurs.get(random.nextInt(utilisateurs.size()));
 			gifdistant.setUtilisateur(u);
 			u.setNbPoints(u.getNbPoints()-j.getNbPoints());
 			utilisateurDao.save(u);
-			gifdistant.setUrl("https://media.giphy.com/media/duzpaTbCUy9Vu/giphy.gif");
+			gifdistant.setUrl("https://www.gifimili.com/gif/2018/02/bebe-danse.gif");
 			
 			map.put(gifdistant.getLegende(), gifdistant);
 		
@@ -222,7 +232,7 @@ public class AjoutDonneesInitiales implements CommandLineRunner {
 		List<Emotion> emotions = emotionDao.findAll();	
 		List<GifDistant> gifs = gifDistantDao.findAll();
 		
-		while(map.size() != 10) {
+		while(map.size() != 1000) {
 			
 			Reaction reaction = new Reaction();
 			

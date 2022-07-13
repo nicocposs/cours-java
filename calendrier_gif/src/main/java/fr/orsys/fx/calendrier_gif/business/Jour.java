@@ -11,16 +11,15 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
 @Entity
-@NoArgsConstructor
+
 @AllArgsConstructor
 @Getter
 @Setter
-
+@ToString
 public class Jour {
 	Random random = new Random();
 	@Id
@@ -29,8 +28,13 @@ public class Jour {
 	
 	private int nbPoints;
 	
-	@OneToOne
+	@OneToOne(mappedBy = "jour")
+	@ToString.Exclude
 	private Gif gif;
+	
+	public Jour() {
+		this.nbPoints = random.nextInt(30);
+	}
 	
 	public Jour(LocalDate date) {
 		this.date = date;

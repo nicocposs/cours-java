@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
+import fr.orsys.fx.calendrier_gif.business.Emotion;
 import fr.orsys.fx.calendrier_gif.business.Gif;
 import fr.orsys.fx.calendrier_gif.business.Jour;
 import fr.orsys.fx.calendrier_gif.business.Reaction;
@@ -25,4 +26,8 @@ public interface ReactionDao extends JpaRepository<Reaction, Long> {
 	
 	//exercice 3 : dans ReactionDao, écrire la méthode qui donne les 5 dernières réactions au gif du jour donné en paramètre
 	List<Reaction> findLast5ReactionByGifDateHeureAjout(LocalDateTime dateHeureAjout);
+	
+	List<Reaction> findTop5ByGifEqualsOrderByDateHeureDesc(Gif gif);
+
+	void deleteAllByEmotion(Emotion emotion);
 }

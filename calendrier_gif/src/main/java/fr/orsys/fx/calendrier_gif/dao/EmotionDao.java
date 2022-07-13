@@ -22,4 +22,6 @@ public interface EmotionDao extends JpaRepository<Emotion, Long> {
 	
 	//exercice : dans EmotionDao, écrire la méthode qui donne les deux premières émotions dont le nom contient le nom donné en paramètre
 	List<Emotion> findFirst2EmotionByNomContaining(String nom);
+
+	Object findByCode(String code);
 }

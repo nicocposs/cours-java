@@ -11,6 +11,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.CascadeType;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -40,6 +43,7 @@ public abstract class Gif {
 	private Utilisateur utilisateur;
 	
 	@OneToMany(mappedBy="gif")
+	@Cascade(CascadeType.ALL)
 	@ToString.Exclude
 	private List<Reaction> reactions;
 	

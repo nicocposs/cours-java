@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.NotNull;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -29,6 +30,7 @@ public class Reaction {
 	private LocalDateTime dateHeure;
 	
 	@ManyToOne
+	@NotNull(message = "Veuillez choisir une emotion")
 	private Emotion emotion;
 	
 	@ManyToOne
